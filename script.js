@@ -63,7 +63,7 @@ return;
   const list=matches.map(item=>`<li class="list-group-item">${item}</li>`).join(" ")
 
 
-  render(`<li class="list-group">${list}</li>`);
+  render(list);
 }
 
 /* 
@@ -93,6 +93,10 @@ document.getElementById('btnForEach').addEventListener('click', forEachFoods)
 */
 function uppercaseList() {
   // TODO: Write your code here
+  const ul='<ul>'
+  const upperCased=foods.map(item =>`<li class="list-group-item">${item.toUpperCase()}</li>`).join(" ");
+  const endUl='</ul>'
+  render(ul+upperCased+endUl);
 }
 
 /* 
@@ -103,13 +107,14 @@ function uppercaseList() {
 */
 function reverseList() {
   // TODO: Write your code here
-  let reverse=foods.reverse();
-  let ol = '<ol class="list-group list-group-numbered">';
+  const reverse=foods.reverse()
+let output = '<ol class="list-group list-group-numbered">';
+  for (const reverseFood of reverse) {
+    output += `<li class="list-group-item">${reverseFood}</li>`;
+  }
+output+='</ol>'
+  render(output);
 
-let olEnd ='</ol>';
-
-  render(ol + reverse + olEnd);
-//fix this 
 }
 
 /* 
@@ -133,10 +138,11 @@ function randomFoodPicker() {
 */
 function wordLengths() {
   // TODO: Write your code here
+  let output=''
 for (const food of foods) {
-  //count # characters using some method thing
-    render(`${food.length}`);
+    output+=`<li class="list-group-item">${food} -- ${food.length} letters</li>`;
   }
+  render(output)
 
 }
 
