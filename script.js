@@ -2,7 +2,7 @@
 const foods = ['Pizza', 'Tacos', 'Ice Cream', 'Burgers', 'Pasta']
 
 // helper function: will display whatever HTML/text we pass into the #out div
-function render (html) {
+function render(html) {
   document.getElementById('out').innerHTML = html
 }
 
@@ -11,8 +11,14 @@ function render (html) {
      - Use a for...of loop
      - Output all foods into the #out div (as <p> tags or list items)
 */
-function listFoods () {
+function listFoods() {
   // code goes here
+  let output = '';
+  for (const food of foods) {
+    output += `<p>${food}</p>`;
+  }
+
+  render(output);
 }
 
 /* 
@@ -20,8 +26,15 @@ function listFoods () {
      - Use a classic for loop with index
      - Output foods as an ordered list (<ol><li>...</li></ol>)
 */
-function numberedFoods () {
+function numberedFoods() {
   // code goes here
+  let output = '<ol class="list-group list-group-numbered">';
+  for (let i=0; i<foods.length; i++) {
+    output += `<li class="list-group-item">${foods[i]}</li>`;
+  }
+output+='</ol>';
+
+  render(output);
 }
 
 /* 
@@ -31,8 +44,26 @@ function numberedFoods () {
      - Only show foods that start with that letter
      - If no matches, display a "not found" message
 */
-function filterFoods () {
+function filterFoods() {
   // code goes here
+  const letter=prompt('Pick a letter to filter your food list by')
+
+  if(!letter) {
+    render('<p>Please enter a letter.</p>');
+
+    return;
+  }
+
+  const lower=letter.toLowerCase();
+  const matches=foods.filter(f => f.toLowerCase().startsWith(lower));
+if(matches.length===0) {
+  render(`<p class="m-0"> No foods starting with ${letter}</p>`)
+return;
+}
+  const list=matches.map(item=>`<li class="list-group-item">${item}</li>`).join(" ")
+
+
+  render(`<li class="list-group">${list}</li>`);
 }
 
 /* 
@@ -41,8 +72,9 @@ function filterFoods () {
      - Output each food as a Bootstrap card
      - Cards should be placed in a centered row
 */
-function forEachFoods () {
+function forEachFoods() {
   // code goes here
+
 }
 
 // ---- Event listeners (buttons) ----
@@ -59,7 +91,7 @@ document.getElementById('btnForEach').addEventListener('click', forEachFoods)
   - Use .map() to create a new array with all foods in uppercase
   - Display the results as an unordered list (<ul>)
 */
-function uppercaseList () {
+function uppercaseList() {
   // TODO: Write your code here
 }
 
@@ -69,8 +101,15 @@ function uppercaseList () {
   - Show the foods array in reverse order
   - You may use a backwards loop OR the built-in .reverse()
 */
-function reverseList () {
+function reverseList() {
   // TODO: Write your code here
+  let reverse=foods.reverse();
+  let ol = '<ol class="list-group list-group-numbered">';
+
+let olEnd ='</ol>';
+
+  render(ol + reverse + olEnd);
+//fix this 
 }
 
 /* 
@@ -79,8 +118,10 @@ function reverseList () {
   - Use Math.random to pick a random food from the array
   - Display it in a Bootstrap card with a heading like "Today's Pick"
 */
-function randomFoodPicker () {
+function randomFoodPicker() {
   // TODO: Write your code here
+  let i=Math.floor(Math.random()*foods.length);
+  render(`<p>Today's Pick: ${foods[i]}</p>`);
 }
 
 /* 
@@ -90,8 +131,13 @@ function randomFoodPicker () {
   - Count the number of characters in each one
   - Display results in the format: Food — X letters
 */
-function wordLengths () {
+function wordLengths() {
   // TODO: Write your code here
+for (const food of foods) {
+  //count # characters using some method thing
+    render(`${food.length}`);
+  }
+
 }
 
 // ---- Event listeners for the new buttons ----
