@@ -126,7 +126,20 @@ output+='</ol>'
 function randomFoodPicker() {
   // TODO: Write your code here
   let i=Math.floor(Math.random()*foods.length);
-  render(`<p>Today's Pick: ${foods[i]}</p>`);
+
+let output=`<div class="card" style="width:18rem;">
+  <div class="card-body">
+    <h5 class="card-title text-center">Today's Pick: </h5>
+    <h6 class="card-subtitle mb-2 text-center">${foods[i]}</h6>
+  </div>
+  </div>`
+
+  render(output);
+
+
+
+
+  
 }
 
 /* 
